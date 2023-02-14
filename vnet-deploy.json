@@ -10,7 +10,7 @@
             "type": "string"
         },
         "vnet_add_prfx": {
-            "type": "string"
+            "type": "array"
         }
     },
     "functions": [],
