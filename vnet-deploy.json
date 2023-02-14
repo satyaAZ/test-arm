@@ -1,34 +1,33 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "vnet_name": {
+            "type": "string"
+           
+        },
+        "env_tag_value": {
+            "type": "string"
+        },
+        "vnet_add_prfx": {
+            "type": "string"
+        }
+    },
     "functions": [],
     "variables": {},
     "resources": [
         {
-            "name": "test-vnet-03",
+            "name": "[parameters('vnet_name')]",
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "displayName": " test deployment"
+                "environment": "[parameters('env_tag_value')]"
             },
             "properties": {
                 "addressSpace": {
-                    "addressPrefixes": [
-                        "10.0.0.0/16"
-                    ]
-                },
-                "subnets": [
-                    {
-                        "name": "test-subnet-03",
-                        "properties": {
-                                                      
-                            "addressPrefix": "10.0.0.0/24"
-                            }
-                        
-                    }
-                ]
+                    "addressPrefixes": "[parameters('vnet_add_prfx')]"
+                }
             }
         }
         
